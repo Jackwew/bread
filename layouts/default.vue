@@ -4,7 +4,7 @@
       <NuxtLink to="/" class="logo">www</NuxtLink>
       <ul class="menu-list">
         <li class="list-item">
-          <NuxtLink>推荐</NuxtLink>
+          <NuxtLink to="/">推荐</NuxtLink>
         </li>
         <li class="list-item">
           <NuxtLink>博客</NuxtLink>
@@ -19,7 +19,7 @@
           <NuxtLink>相册</NuxtLink>
         </li>
         <li class="list-item">
-          <NuxtLink>关于</NuxtLink>
+          <NuxtLink to="/about">联系我</NuxtLink>
         </li>
       </ul>
     </div>
@@ -38,20 +38,38 @@
             </div>
           </div>
           <div class="logo">
-            <img src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/portrait.jpg" alt="portrait" />
+            <img
+              src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/portrait.jpg"
+              alt="portrait"
+            />
           </div>
           <div class="intercourse">
             <Poptip trigger="hover" title="扫码加好友">
-              <CustomIcon title="微信" class="icon" icon-content="wechat" :size="27" color="#04BE02" />
+              <CustomIcon
+                title="微信"
+                class="icon"
+                icon-content="wechat"
+                :size="27"
+                color="#04BE02"
+              />
               <template #content>
                 <div class="wechat-code-box">
-                  <img src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/wechat_code.jpg" alt="code" />
+                  <img
+                    src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/wechat_code.jpg"
+                    alt="code"
+                  />
                 </div>
               </template>
             </Poptip>
 
             <CustomIcon title="github" class="icon" icon-content="github" />
-            <CustomIcon title="gitee" class="icon" icon-content="gitee" :size="20" color="#c71d23" />
+            <CustomIcon
+              title="gitee"
+              class="icon"
+              icon-content="gitee"
+              :size="20"
+              color="#c71d23"
+            />
             <CustomIcon title="twitter" class="icon" icon-content="twitter" color="#1d9bf0" />
           </div>
         </div>
@@ -63,7 +81,9 @@
             </p>
           </template>
           <div style="text-align: center">
-            <p style="font-size: 20px; margin-bottom: 10px">请关注微信公众号(前端妙妙屋)获取详细手机号码</p>
+            <p style="font-size: 20px; margin-bottom: 10px">
+              请关注微信公众号(前端妙妙屋)获取详细手机号码
+            </p>
             <img
               style="width: 100%; height: 100%; border-radius: 5px"
               src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/qrcode_for_gh.jpg"
@@ -77,7 +97,9 @@
       </div>
       <div class="footer">
         <div class="record">
-          <span>© {{ year }} Bug Engineer Wu All rights reserved. Welcome to the public account: </span>
+          <span
+            >© {{ year }} Bug Engineer Wu All rights reserved. Welcome to the public account:
+          </span>
           <Tooltip theme="light">
             <span>前端妙妙屋</span>
             <template #content>
@@ -249,6 +271,7 @@ const onTelephone = () => {
   }
 }
 .footer-container {
+  background: transparent;
   .concat-wrapper {
     width: 100%;
     height: 200px;

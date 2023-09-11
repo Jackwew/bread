@@ -2,27 +2,33 @@
   <div class="index-container">
     <NuxtLayout>
       <div class="home-video">
-        <Video />
-        <div class="title">
-          Front-end Dev <br />
-          & Photography Enthusiast.
+        <Video-bg />
+      </div>
+      <div class="smegma">
+        <div class="title-box">
+          <div class="title">
+            Front-end Dev <br />
+            & Photography Enthusiast.
+          </div>
         </div>
         <div class="options">
           <div class="about-button">了解我</div>
           <div class="show-video">Watch Video</div>
         </div>
       </div>
-      <div class="empty"></div>
       <section class="content-wrapper person">
         <div ref="gs_reveal" class="person-img gs_reveal_fromLeft">
-          <img src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/myself_to.jpg" alt="travel" />
+          <img
+            src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/myself_to.jpg"
+            alt="travel"
+          />
         </div>
         <div ref="gs_reveal" class="person-info gs_reveal_fromRight">
           <h2>My job is a front-end / full stack development</h2>
           <p>
-            我目前是一名前端开发工程师, 主要工作地在四川 - 成都, 使用的技术有: <a>Html5</a>, <a>Css/Css3</a>,
-            <a>Javascript</a>, <a>TypeScript</a>, <a>Nodejs</a>, <a>Java</a>。 对于框架的研究有：<a>React</a>,
-            <a>Vue2/3</a>, <a>webpack</a>,<a>vite</a>,
+            我目前是一名前端开发工程师, 主要工作地在四川 - 成都, 使用的技术有: <a>Html5</a>,
+            <a>Css/Css3</a>, <a>Javascript</a>, <a>TypeScript</a>, <a>Nodejs</a>, <a>Java</a>。
+            对于框架的研究有：<a>React</a>, <a>Vue2/3</a>, <a>webpack</a>,<a>vite</a>,
             <a>React Native</a
             >。截至目前已经在成都工作五年有余，成都是一座来了就不想离开的城市。如果你想了解更多关于和我一起工作的信息,
             或者成都这座美丽的城市, 请联系我
@@ -39,24 +45,24 @@
         </div>
         <div v-if="projectList.length" class="project-list">
           <div class="new-pro">
-            <img :src="primaryProject.projectImg" alt="hty" />
+            <img :src="primaryProject?.projectImg" alt="hty" />
             <Tooltip class="icon" content="React项目" placement="right" always theme="light">
               <CustomIcon icon-content="react" color="#61dafb" :size="50" />
             </Tooltip>
             <div class="info-mess">
-              <div class="title">{{ primaryProject.projectName }}</div>
-              <div class="des">{{ primaryProject.projectDes }}</div>
+              <div class="title">{{ primaryProject?.projectName }}</div>
+              <div class="des">{{ primaryProject?.projectDes }}</div>
             </div>
           </div>
           <div class="less-pro">
             <div v-for="pro in projectList" :key="pro.id" class="less-item">
-              <img :src="pro.projectImg" alt="global" />
+              <img :src="pro?.projectImg" alt="global" />
               <Tooltip class="icon" content="React项目" placement="right" always theme="light">
                 <CustomIcon icon-content="react" color="#61dafb" :size="32" />
               </Tooltip>
               <div class="info-mess">
-                <div class="less-title">{{ pro.projectName }}</div>
-                <div class="des">{{ pro.projectDes }}</div>
+                <div class="less-title">{{ pro?.projectName }}</div>
+                <div class="des">{{ pro?.projectDes }}</div>
               </div>
             </div>
           </div>
@@ -80,17 +86,17 @@
         <div class="letter-title">MY INSTAGRAM FEED</div>
         <div class="big-title">我的生活以及随手拍</div>
         <swiper-container
-            :slidesPerView="3"
-            :spaceBetween="30"
-            :freeMode="true"
-            :pagination="{
-                clickable: true,
-            }"
-            :modules="modules"
+          :slides-per-view="3"
+          :space-between="30"
+          :free-mode="true"
+          :pagination="{
+            clickable: true
+          }"
+          :modules="modules"
         >
           <template v-for="(_photo, index) in photoList" :key="index">
             <swiper-slide class="swiper-slide">
-              <img :src="_photo"  alt="img" />
+              <img :src="_photo" alt="img" />
             </swiper-slide>
           </template>
         </swiper-container>
@@ -98,19 +104,19 @@
     </NuxtLayout>
   </div>
 </template>
-<script setup>
-import Swiper from "swiper";
-import { FreeMode, Pagination } from 'swiper/modules';
+<script lang="ts" setup>
+import CuSwiper from 'swiper'
+import { FreeMode, Pagination } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import 'swiper/css/free-mode'
+import 'swiper/css/pagination'
 
 const foo = useFoo()
 const modules = ref([FreeMode, Pagination])
-const projectList = ref([])
-const blogList = ref([])
-const primaryProject = ref([])
-const photoList = ref([
+const projectList: any = ref([])
+const blogList: any = ref([])
+const primaryProject: any = ref([])
+const photoList: any = ref([
   'https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/pat/20220829163714.jpg',
   'https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/pat/20220829163729.jpg',
   'https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/pat/20220829163752.jpg',
@@ -119,13 +125,13 @@ const photoList = ref([
 // const colorMode = useColorMode()
 
 const getList = async () => {
-  const { list } = await getProjectList({ query: { pageNum: 1, pageSize: 10 } })
+  const { list }: any = await getProjectList({ query: { pageNum: 1, pageSize: 10 } })
   primaryProject.value = list[0]
   projectList.value = list.splice(1, 4)
 }
 
 const asyncGetBlogList = async () => {
-  const { list } = await getBlogData({ query: { pageNum: 1, pageSize: 10 } })
+  const { list }: any = await getBlogData({ query: { pageNum: 1, pageSize: 10 } })
   blogList.value = list
 }
 
@@ -133,7 +139,7 @@ onMounted(async () => {
   await getList()
   await asyncGetBlogList()
   if (process.client) {
-    let swiper = new Swiper('.mySwiper', {
+    new CuSwiper('.mySwiper', {
       cssMode: true,
       navigation: {
         nextEl: '.swiper-button-next',
@@ -160,26 +166,37 @@ onMounted(async () => {
     position: absolute;
     top: 0;
     overflow: hidden;
-
-    .title {
+    z-index: -1;
+  }
+  .smegma {
+    width: 100%;
+    min-height: 100vh;
+    margin-top: -100px;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    .title-box {
       width: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      font-family: orpheus-pro;
-      font-style: normal;
-      margin-top: 200px;
-      color: #fff;
-      font-size: calc((6.4 - 1) * 1.2vw + 1rem);
-      text-align: center;
-      font-weight: 400;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .title {
+        font-family: orpheus-pro;
+        font-style: normal;
+        color: #fff;
+        font-size: calc((6.4 - 1) * 1.2vw + 1rem);
+        text-align: center;
+        font-weight: 400;
+      }
     }
-
     .options {
       min-height: 100px;
       color: #fff;
-      margin-top: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 1;
 
       .about-button {
         width: 204px;
@@ -253,6 +270,7 @@ onMounted(async () => {
       img {
         width: 100%;
         height: 100%;
+        border-radius: 8px;
       }
     }
 

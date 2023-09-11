@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  typescript: {
+    typeCheck: true
+  },
   app: {
     head: {
       meta: [
@@ -19,7 +22,11 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/c/font_2813191_pd1kpmcpg7f.css' } // 新增全局字体样式
+        {
+          rel: 'stylesheet',
+          type: 'text/css',
+          href: '//at.alicdn.com/t/c/font_2813191_pd1kpmcpg7f.css'
+        } // 新增全局字体样式
       ],
       style: [],
       script: [

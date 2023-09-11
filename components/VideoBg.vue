@@ -11,6 +11,7 @@ const videoUrl = ref(
 
 onMounted(() => {
   if (process.client) {
+    // @ts-ignore
     const bv = new window.Bideo()
     bv.init({
       videoEl: document.querySelector('.background_video'),
