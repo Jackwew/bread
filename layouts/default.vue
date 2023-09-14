@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header">
+    <div class="header" :style="{ backgroundColor: props.headerBg }">
       <NuxtLink to="/" class="logo">www</NuxtLink>
       <ul class="menu-list">
         <li class="list-item">
@@ -10,7 +10,7 @@
           <NuxtLink>博客</NuxtLink>
         </li>
         <li class="list-item">
-          <NuxtLink>简历</NuxtLink>
+          <NuxtLink to="/information">简历</NuxtLink>
         </li>
         <li class="list-item">
           <NuxtLink>开发工具</NuxtLink>
@@ -24,7 +24,7 @@
       </ul>
     </div>
     <slot />
-    <div class="footer-container">
+    <div class="footer-container" v-if="props.showFooter">
       <div class="concat-wrapper">
         <div class="content">
           <div class="concat-box">
@@ -38,38 +38,20 @@
             </div>
           </div>
           <div class="logo">
-            <img
-              src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/portrait.jpg"
-              alt="portrait"
-            />
+            <img src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/portrait.jpg" alt="portrait" />
           </div>
           <div class="intercourse">
             <Poptip trigger="hover" title="扫码加好友">
-              <CustomIcon
-                title="微信"
-                class="icon"
-                icon-content="wechat"
-                :size="27"
-                color="#04BE02"
-              />
+              <CustomIcon title="微信" class="icon" icon-content="wechat" :size="27" color="#04BE02" />
               <template #content>
                 <div class="wechat-code-box">
-                  <img
-                    src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/wechat_code.jpg"
-                    alt="code"
-                  />
+                  <img src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/wechat_code.jpg" alt="code" />
                 </div>
               </template>
             </Poptip>
 
             <CustomIcon title="github" class="icon" icon-content="github" />
-            <CustomIcon
-              title="gitee"
-              class="icon"
-              icon-content="gitee"
-              :size="20"
-              color="#c71d23"
-            />
+            <CustomIcon title="gitee" class="icon" icon-content="gitee" :size="20" color="#c71d23" />
             <CustomIcon title="twitter" class="icon" icon-content="twitter" color="#1d9bf0" />
           </div>
         </div>
@@ -81,9 +63,7 @@
             </p>
           </template>
           <div style="text-align: center">
-            <p style="font-size: 20px; margin-bottom: 10px">
-              请关注微信公众号(前端妙妙屋)获取详细手机号码
-            </p>
+            <p style="font-size: 20px; margin-bottom: 10px">请关注微信公众号(前端妙妙屋)获取详细手机号码</p>
             <img
               style="width: 100%; height: 100%; border-radius: 5px"
               src="https://mo-easy.obs.cn-north-4.myhuaweicloud.com/www/qrcode_for_gh.jpg"
@@ -97,9 +77,7 @@
       </div>
       <div class="footer">
         <div class="record">
-          <span
-            >© {{ year }} Bug Engineer Wu All rights reserved. Welcome to the public account:
-          </span>
+          <span>© {{ year }} Bug Engineer Wu All rights reserved. Welcome to the public account: </span>
           <Tooltip theme="light">
             <span>前端妙妙屋</span>
             <template #content>
@@ -112,30 +90,40 @@
           </Tooltip>
         </div>
         <div class="link">
-          <nuxt-link to="https://www.12377.cn/">网上有害信息举报专区</nuxt-link>
+          <nuxt-link to="https://www.12377.cn/">网上有害信息举报专区{{ props.bgColor }}</nuxt-link>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-const year = ref('2023')
-const visible = ref(false)
-const modalLoading = ref(false)
+const props = defineProps({
+  headerBg: {
+    type: String,
+    default: ""
+  },
+  showFooter: {
+    type: Boolean,
+    default: true
+  }
+});
+const year = ref("2023");
+const visible = ref(false);
+const modalLoading = ref(false);
 
 const authorInfo = ref({
-  name: 'www',
-  email: 'bugengineer.wu@gamil.com',
-  tel: '187******65'
-})
+  name: "www",
+  email: "bugengineer.wu@gamil.com",
+  tel: "187******65"
+});
 
 const onConfirm = () => {
-  visible.value = false
-}
+  visible.value = false;
+};
 
 const onTelephone = () => {
-  visible.value = true
-}
+  visible.value = true;
+};
 </script>
 <style scoped lang="scss">
 .header {
@@ -178,7 +166,7 @@ const onTelephone = () => {
     }
 
     &::after {
-      content: '';
+      content: "";
       width: 0;
       height: 2px;
       position: absolute;
@@ -193,7 +181,7 @@ const onTelephone = () => {
     }
 
     &::before {
-      content: '';
+      content: "";
       width: 0;
       height: 2px;
       position: absolute;
@@ -239,7 +227,7 @@ const onTelephone = () => {
       }
 
       &::after {
-        content: '';
+        content: "";
         width: 0;
         height: 1px;
         position: absolute;
@@ -274,14 +262,13 @@ const onTelephone = () => {
   background: transparent;
   .concat-wrapper {
     width: 100%;
-    height: 200px;
-    padding: 5vw 20vw;
+    padding: 40px 0;
     color: #000;
     border-top: 1px solid rgba(0, 0, 0, 0.11);
 
     .content {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
       align-items: center;
 
       .concat-box {
@@ -343,7 +330,7 @@ const onTelephone = () => {
   }
   .footer {
     width: 100%;
-    padding: 5vw 10vw;
+    padding: 20px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.11);
 
     .record {
