@@ -18,7 +18,7 @@ import PdfViewer from "@/components/PdfViewer.vue";
   width: 100%;
   background: rgba(0,0,0,.1);
   .center {
-    //min-height: calc(100vh - 354px);
+    min-height: calc(100vh - 100px);
   }
 }
 </style>
